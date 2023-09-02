@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{% block content %}
+{% comment %} <script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const form = document.querySelector("#post-form");
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+	
+			// Get the user's email from the hidden input field
+			const email = document.getElementById("user_email").value;
+	
+			// Send a POST request to the Django server to handle email sending
+			fetch("/send-email/", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-CSRFToken": getCSRFToken(),  // Replace with your CSRF token retrieval logic
+				},
+				body: JSON.stringify({ email: email }),
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						alert("Email sent successfully!");
+					} else {
+						alert("Failed to send email. Check if email is Registered.");
+					}
+				})
+				.catch(error => {
+					console.error("Error sending email:", error);
+				});
+		});
+	});
+	function getCSRFToken() {
+        const cookies = document.cookie.split("; ");
+        for (const cookie of cookies) {
+            const [name, value] = cookie.split("=");
+            if (name === "csrftoken") {
+                return decodeURIComponent(value);
+            }
+        }
+        return "";
+    }
+</script> {% endcomment %}
+<h2>{% if id %} Edit {% else %} New {% endif %} Post</h2>
+
+<form class = "col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data" novalidate>
+	{% csrf_token %}
+    {% comment %} //property {% endcomment %}
+	{{ form.as_p }}
+	
+	<input type="submit" value="Save" />
+</form>
+
+{% endblock content %}
