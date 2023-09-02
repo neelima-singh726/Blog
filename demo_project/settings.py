@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog',
         'USER': 'root',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'enter pswd',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
@@ -149,8 +149,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 PSWD = config('PSWD')
-# PSWD = "wpoowzlzwguyjlnp"
-EMAIL = "neelimaforever20"
+
+EMAIL = "****email****"
 import logging
 logger = logging.getLogger(__name__)
 
